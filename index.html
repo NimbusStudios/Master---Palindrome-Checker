@@ -15,29 +15,6 @@
     <p id="result"></p>
 
 <script>
-
-/**
- * Function to check if a given string is a palindrome.
- * Takes a string as input.
- * Returns true if the string is a palindrome, false otherwise.
- *
- * @param {string} str - The string to be checked.
- * @return {boolean} - True if the string is a palindrome, false otherwise.
- */
-function isPalindrome(str) {
-  // Convert the string to lowercase and remove non-alphanumeric characters
-  const cleanedStr = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-  // Reverse the string
-  const reversedStr = cleanedStr.split('').reverse().join('');
-  // Compare the original string with the reversed string
-  return cleanedStr === reversedStr;
-}
-
-/**
- * Checks if the input string is a palindrome and updates the result element accordingly.
- *
- * @return {void} No return value.
- */
 function checkPalindrome() {
   // Get the value entered by the user in the input field
   const input = document.getElementById('inputString').value;
@@ -45,5 +22,25 @@ function checkPalindrome() {
   const result = isPalindrome(input) ? 'Palindrome' : 'Not a Palindrome';
   // Update the result element with the result
   document.getElementById('result').innerText = result;
+}
+
+function isPalindrome(str) {
+  // Convert the string to lowercase and remove non-alphanumeric characters
+  let cleanedStr = '';
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    if (/[a-zA-Z0-9]/.test(char)) {
+      cleanedStr += char;
+    }
+  }
+  // Check if the string is a palindrome using a for loop
+  let isPalindrome = true;
+  for (let i = 0; i < Math.floor(cleanedStr.length / 2); i++) {
+    if (cleanedStr[i] !== cleanedStr[cleanedStr.length - i - 1]) {
+      isPalindrome = false;
+      break;
+    }
+  }
+  return isPalindrome;
 }
 </script>
